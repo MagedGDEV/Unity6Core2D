@@ -19,7 +19,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "8c82fc04-6006-4881-94b2-ce8cc34833cd",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
