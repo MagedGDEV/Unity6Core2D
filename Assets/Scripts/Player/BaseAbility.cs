@@ -6,6 +6,7 @@ public class BaseAbility : MonoBehaviour
 
     protected GatherInput linkedInput;
     protected StateMachine linkedStateMachine;
+    protected Animator linkedAnimator;
 
     public PlayerStates.State thisAbilityState;
     public bool isPermitted = true;
@@ -35,6 +36,11 @@ public class BaseAbility : MonoBehaviour
         
     }
 
+    public virtual void UpdateAnimator()
+    {
+        
+    }
+
     protected virtual void Initialization()
     {
         player = GetComponent<Player>();
@@ -42,6 +48,7 @@ public class BaseAbility : MonoBehaviour
         {
             linkedInput = player.gatherInput;
             linkedStateMachine = player.stateMachine;
+            linkedAnimator = player.anim;
         }
     }
 }

@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
     public GatherInput gatherInput;
     public StateMachine stateMachine;
+    public Animator anim;
 
     private BaseAbility[] playerAbilities;
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
             {
                 ability.ProcessAbility();
             }
+            ability.UpdateAnimator();
         }
     }
 
