@@ -6,6 +6,7 @@ public class BaseAbility : MonoBehaviour
 
     protected GatherInput linkedInput;
     protected StateMachine linkedStateMachine;
+    protected PhysicsControl linkedPhysicsControl;
     protected Animator linkedAnimator;
 
     public PlayerStates.State thisAbilityState;
@@ -48,6 +49,7 @@ public class BaseAbility : MonoBehaviour
         {
             linkedInput = player.gatherInput;
             linkedStateMachine = player.stateMachine;
+            linkedPhysicsControl = player.physicsControl;
             linkedAnimator = player.anim;
         }
     }

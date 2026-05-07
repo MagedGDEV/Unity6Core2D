@@ -12,9 +12,17 @@ public class IdleAbiility : BaseAbility
         // add more things
     }
 
+    public override void EnterAbility()
+    {
+        linkedPhysicsControl.rb.linearVelocityX = 0;
+    }
+
     public override void ProcessAbility()
     {
-        Debug.Log("This is IDLE ability");
+        if (linkedInput.horizontalInput != 0)
+        {
+            linkedStateMachine.ChangeState(PlayerStates.State.Run);
+        }
     }
 
     public override void UpdateAnimator()

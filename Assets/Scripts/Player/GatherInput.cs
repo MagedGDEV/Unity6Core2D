@@ -11,7 +11,8 @@ public class GatherInput : MonoBehaviour
     private InputActionMap playerMap;
     private InputActionMap uiMap;
 
-    private float horizontalInput;
+    [HideInInspector]
+    public float horizontalInput;
 
     private void OnEnable()
     {
