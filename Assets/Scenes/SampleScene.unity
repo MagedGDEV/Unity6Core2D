@@ -180,7 +180,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.2047257
+  orthographic size: 6.81761
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -224,6 +224,8 @@ GameObject:
   - component: {fileID: 845851226}
   - component: {fileID: 845851229}
   - component: {fileID: 845851227}
+  - component: {fileID: 845851232}
+  - component: {fileID: 845851231}
   - component: {fileID: 845851228}
   - component: {fileID: 845851223}
   - component: {fileID: 845851222}
@@ -298,7 +300,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &845851224
 SpriteRenderer:
   serializedVersion: 2
@@ -418,6 +420,7 @@ MonoBehaviour:
   playerInput: {fileID: 845851226}
   jumpActionRef: {fileID: 667999944324414207, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
   moveActionRef: {fileID: 491972202517000329, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
+  horizontalInput: 0
 --- !u!114 &845851228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   gatherInput: {fileID: 845851227}
+  physicsControl: {fileID: 845851232}
   anim: {fileID: 845851230}
 --- !u!95 &845851230
 Animator:
@@ -468,6 +472,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &845851231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845851221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76953b4760ca94dab9e446b47d5c6cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveAbility
+  thisAbilityState: 1
+  isPermitted: 1
+  speed: 5
+--- !u!114 &845851232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845851221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a613228bb294c10a887dd706a420ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsControl
+  rb: {fileID: 845851223}
 --- !u!1 &866367017
 GameObject:
   m_ObjectHideFlags: 0
