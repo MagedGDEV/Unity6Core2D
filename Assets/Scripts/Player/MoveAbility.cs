@@ -34,7 +34,6 @@ public class MoveAbility : BaseAbility
 
     public override void UpdateAnimator()
     {
-        Debug.Log("Hello world");
         linkedAnimator.SetBool(runParamterInt, linkedStateMachine.currentState == PlayerStates.State.Run);
     }
 }
