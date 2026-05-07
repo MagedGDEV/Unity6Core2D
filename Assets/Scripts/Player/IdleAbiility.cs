@@ -21,6 +21,7 @@ public class IdleAbiility : BaseAbility
     {
         if (linkedInput.horizontalInput != 0)
         {
+            player.Flip();
             linkedStateMachine.ChangeState(PlayerStates.State.Run);
         }
     }
