@@ -4,6 +4,16 @@ public class PhysicsControl : MonoBehaviour
 {
 
     public Rigidbody2D rb;
+
+    [Header("Ground")]
+    [SerializeField] private float groundRayDistance;
+    [SerializeField] private Transform leftGroundPoint;
+    [SerializeField] private Transform rightGroundPoint;
+    [SerializeField] private LayerMask whatToDetect;
+    public bool grounded;
+    private RaycastHit2D hitInfoLeft;
+    private RaycastHit2D hitInfoRight;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,5 +24,23 @@ public class PhysicsControl : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void FixedUpdate()
+    {
+        grounded = CheckGround();
+    }
+
+    private bool CheckGround()
+    {
+        hitInfoLeft = Physics2D.Raycast(leftGroundPoint.position, Vector2.down, groundRayDistance, whatToDetect);
+        hitInfoRight = Physics2D.Raycast(rightGroundPoint.position, Vector2.down, groundRayDistance, whatToDetect);
+
+        Debug.DrawRay(leftGroundPoint.position, new Vector3(0, -groundRayDistance, 0), Color.red);
+        Debug.DrawRay(rightGroundPoint.position, new Vector3(0, -groundRayDistance, 0), Color.green);
+
+        if (hitInfoLeft || hitInfoRight)
+            return true;
+        return false;
     }
 }
