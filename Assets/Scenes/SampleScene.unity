@@ -368,7 +368,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.7
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06deaa512b4e4bf19e6c25d9e904306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JumpAbility
-  thisAbilityState: 0
+  thisAbilityState: 2
   isPermitted: 1
   jumpActionRef: {fileID: 667999944324414207, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
   jumpForce: 10
