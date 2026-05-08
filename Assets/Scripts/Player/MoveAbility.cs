@@ -16,10 +16,11 @@ public class MoveAbility : BaseAbility
 
     public override void ProcessAbility()
     {
-        if (linkedInput.horizontalInput == 0)
-        {
+        if (linkedPhysicsControl.grounded &&linkedInput.horizontalInput == 0)
             linkedStateMachine.ChangeState(PlayerStates.State.Idle);
-        }
+        
+        if (!linkedPhysicsControl.grounded)
+            linkedStateMachine.ChangeState(PlayerStates.State.Jump);
     }
 
     public override void ProcessFixedAbility()
