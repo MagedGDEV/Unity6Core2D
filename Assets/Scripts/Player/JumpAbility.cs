@@ -60,6 +60,7 @@ public class JumpAbility : BaseAbility
 
     public override void ProcessAbility()
     {
+        player.Flip();
         minimumAirTime -=Time.deltaTime;
         if (linkedPhysicsControl.grounded && minimumAirTime < 0)
             linkedStateMachine.ChangeState(PlayerStates.State.Idle);
