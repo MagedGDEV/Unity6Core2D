@@ -101,3 +101,6 @@ InitTestScene*.unity*
 # Ignore generarted vscode files
 .vscode
 *.DS_Store
+
+# Ignore generated Rider files
+.idea
