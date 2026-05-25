@@ -79,7 +79,10 @@ public class JumpAbility : BaseAbility
 
     public override void UpdateAnimator()
     {
-        linkedAnimator.SetBool(jumpParamterInt, linkedStateMachine.currentState == PlayerStates.State.Jump);
+        linkedAnimator.SetBool(jumpParamterInt,
+            linkedStateMachine.currentState == PlayerStates.State.Jump ||
+            linkedStateMachine.currentState == PlayerStates.State.WallJump
+            );
         linkedAnimator.SetFloat(ySpeedParameterInt, linkedPhysicsControl.rb.linearVelocityY);
     }
 }
