@@ -22,18 +22,13 @@ public class PhysicsControl : MonoBehaviour
     public bool wallDetected;
     private RaycastHit2D hitInfoWallUpper;
     private RaycastHit2D hitInfoWallLower;
-    
+
+    private float gravityValue;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gravityValue = rb.gravityScale;
     }
 
     private void FixedUpdate()
@@ -66,5 +61,20 @@ public class PhysicsControl : MonoBehaviour
         if (hitInfoWallUpper ||  hitInfoWallLower)
             return true;
         return false;
+    }
+    
+    public void DisableGravity()
+    {
+        rb.gravityScale = 0;
+    }
+
+    public void EnableGravity()
+    {
+        rb.gravityScale = gravityValue;
+    }
+    
+    public void ResetVelocity()
+    {
+        rb.linearVelocity = Vector2.zero;
     }
 }

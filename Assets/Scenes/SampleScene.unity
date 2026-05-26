@@ -183,7 +183,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.15625
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -437,6 +437,9 @@ GameObject:
   - component: {fileID: 845851229}
   - component: {fileID: 845851227}
   - component: {fileID: 845851232}
+  - component: {fileID: 845851236}
+  - component: {fileID: 845851235}
+  - component: {fileID: 845851234}
   - component: {fileID: 845851233}
   - component: {fileID: 845851231}
   - component: {fileID: 845851228}
@@ -746,6 +749,55 @@ MonoBehaviour:
   jumpForce: 10
   airSpeed: 5
   minimumAirTime: 0.2
+--- !u!114 &845851234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845851221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6493db7aaafb04addbf023fe70fca44a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallJumpAbility
+  thisAbilityState: 4
+  isPermitted: 1
+  wallJumpActionRef: {fileID: 667999944324414207, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
+  wallJumpForce: {x: 8, y: 10}
+  wallJumpMaxTime: 0.4
+--- !u!114 &845851235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845851221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a805cca5407fa478fa5ff8429536873c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WallSlideAbility
+  thisAbilityState: 5
+  isPermitted: 1
+  maxWallSlideSpeed: 0.5
+--- !u!114 &845851236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845851221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659519399a5794a55ab9418332fae847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DashAbility
+  thisAbilityState: 6
+  isPermitted: 1
+  dashActionRef: {fileID: 0}
+  dashForce: 10
+  maxDashDuration: 1
 --- !u!1 &866367017
 GameObject:
   m_ObjectHideFlags: 0
