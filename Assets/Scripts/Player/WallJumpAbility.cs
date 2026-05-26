@@ -49,19 +49,17 @@ public class WallJumpAbility : BaseAbility
         wallJumpTimer -= Time.deltaTime;
         wallJumpMinimumTime -= Time.deltaTime;
 
+        if (wallJumpTimer <= 0)
+        {
+            linkedStateMachine.ChangeState(linkedPhysicsControl.grounded
+                ? PlayerStates.State.Idle
+                : PlayerStates.State.Jump);
+            return;
+        }
         if (wallJumpMinimumTime <= 0 && linkedPhysicsControl.wallDetected)
         {
             linkedStateMachine.ChangeState(PlayerStates.State.Jump);
             wallJumpTimer = -1;
-            return;
-        }
-
-        if (wallJumpTimer <= 0)
-        {
-            if (linkedPhysicsControl.grounded)
-                linkedStateMachine.ChangeState(PlayerStates.State.Idle);
-            else
-                linkedStateMachine.ChangeState(PlayerStates.State.Jump);
         }
     }
 
