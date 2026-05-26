@@ -8,6 +8,15 @@ public class StateMachine
     {
         foreach(BaseAbility ability in arrayOfAbilities)
         {
+            if (ability.thisAbilityState == newState)
+            {
+                if (!ability.isPermitted)
+                    return;
+            }
+        }
+        
+        foreach(BaseAbility ability in arrayOfAbilities)
+        {
             if (ability.thisAbilityState == currentState)
             {
                 ability.ExitAbility();
