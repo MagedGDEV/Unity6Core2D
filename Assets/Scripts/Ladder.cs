@@ -7,9 +7,7 @@ public class Ladder : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        LadderAbility ability = collision.GetComponent<LadderAbility>();
-        if (ability != null) 
-            ladderAbility = ability; 
+        ladderAbility = collision.GetComponent<LadderAbility>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
