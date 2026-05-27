@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PhysicsControl : MonoBehaviour
@@ -23,13 +24,20 @@ public class PhysicsControl : MonoBehaviour
     private RaycastHit2D hitInfoWallUpper;
     private RaycastHit2D hitInfoWallLower;
     
+    [Header("Ceiling")]
+    [SerializeField] private float ceilingRayDistance;
+    [SerializeField] private Transform ceilingCheckPointLeft;
+    [SerializeField] private Transform ceilingCheckPointRight;
+    public bool ceilingDetected;
+    private RaycastHit2D hitInfoCeilLeft;
+    private RaycastHit2D hitInfoCeilRight;
+    
     [Header("Colliders")]
     [SerializeField] private Collider2D standCollider;
     [SerializeField] private Collider2D crouchCollider;
 
     private float gravityValue;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         gravityValue = rb.gravityScale;
@@ -39,6 +47,13 @@ public class PhysicsControl : MonoBehaviour
     {
         wallDetected = CheckWall();
         grounded = CheckGround();
+        ceilingDetected = CheckCeiling();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(ceilingCheckPointLeft.position, Vector2.up * ceilingRayDistance, Color.blue);
+        Debug.DrawRay(ceilingCheckPointRight.position, Vector2.up * ceilingRayDistance, Color.blue);
     }
 
     private bool CheckGround()
@@ -63,6 +78,16 @@ public class PhysicsControl : MonoBehaviour
         Debug.DrawRay(wallCheckPointLower.position, transform.right * wallRayDistance, Color.red);
         
         if (hitInfoWallUpper ||  hitInfoWallLower)
+            return true;
+        return false;
+    }
+    
+    private bool CheckCeiling()
+    {
+        hitInfoCeilLeft = Physics2D.Raycast(ceilingCheckPointLeft.position, Vector2.up, ceilingRayDistance, whatToDetect);
+        hitInfoCeilRight = Physics2D.Raycast(ceilingCheckPointRight.position, Vector2.up, ceilingRayDistance, whatToDetect);
+
+        if (hitInfoCeilLeft || hitInfoCeilRight)
             return true;
         return false;
     }
