@@ -7,6 +7,10 @@ public class PhysicsControl : MonoBehaviour
     public Rigidbody2D rb;
 
     [SerializeField] private LayerMask whatToDetect;
+
+    [Header("Coyote Time")] 
+    [SerializeField] private float coyoteSetTime;
+    public float coyoteTimer;
     
     [Header("Ground")]
     [SerializeField] private float groundRayDistance;
@@ -41,6 +45,15 @@ public class PhysicsControl : MonoBehaviour
     void Start()
     {
         gravityValue = rb.gravityScale;
+        coyoteTimer = coyoteSetTime;
+    }
+
+    void Update()
+    {
+        if (grounded)
+            coyoteTimer =  coyoteSetTime;
+        else
+            coyoteTimer -= Time.deltaTime;
     }
 
     private void FixedUpdate()

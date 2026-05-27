@@ -39,13 +39,13 @@ public class JumpAbility : BaseAbility
                 new Vector2
                 (
                     airSpeed * linkedInput.horizontalInput,
-                    jumpForce
+                    0
                 );
             minimumAirTime = startMinimumAirTime;
             return;
         }
 
-        if (linkedPhysicsControl.grounded)
+        if (linkedPhysicsControl.coyoteTimer > 0)
         {
             linkedStateMachine.ChangeState(PlayerStates.State.Jump);
             linkedPhysicsControl.rb.linearVelocity = 
@@ -55,7 +55,20 @@ public class JumpAbility : BaseAbility
                     jumpForce
                 );
             minimumAirTime = startMinimumAirTime;
+            linkedPhysicsControl.coyoteTimer = -1;
         }
+
+        // if (linkedPhysicsControl.grounded)
+        // {
+        //     linkedStateMachine.ChangeState(PlayerStates.State.Jump);
+        //     linkedPhysicsControl.rb.linearVelocity = 
+        //         new Vector2
+        //         (
+        //             airSpeed * linkedInput.horizontalInput,
+        //             jumpForce
+        //         );
+        //     minimumAirTime = startMinimumAirTime;
+        // }
     }
 
     private void StopJump(InputAction.CallbackContext value)
