@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 845851229}
   - component: {fileID: 845851227}
   - component: {fileID: 845851232}
+  - component: {fileID: 845851239}
   - component: {fileID: 845851237}
   - component: {fileID: 845851236}
   - component: {fileID: 845851235}
@@ -446,6 +447,7 @@ GameObject:
   - component: {fileID: 845851228}
   - component: {fileID: 845851223}
   - component: {fileID: 845851222}
+  - component: {fileID: 845851238}
   - component: {fileID: 845851230}
   m_Layer: 7
   m_Name: Player
@@ -734,6 +736,8 @@ MonoBehaviour:
   wallCheckPointUpper: {fileID: 990360135}
   wallCheckPointLower: {fileID: 785178431}
   wallDetected: 0
+  standCollider: {fileID: 845851222}
+  crouchCollider: {fileID: 845851238}
 --- !u!114 &845851233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,6 +823,58 @@ MonoBehaviour:
   climbSpeed: 5
   setMinLadderTime: 0.2
   canGoOnLadder: 0
+--- !u!70 &845851238
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845851221}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.031144142, y: -0.3428192}
+  m_Size: {x: 0.8122883, y: 1.4465928}
+  m_Direction: 0
+--- !u!114 &845851239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845851221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c19e92a0e294712a40d258726fc06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrouchAbility
+  thisAbilityState: 7
+  isPermitted: 1
+  crouchActionReference: {fileID: -7914943209702995390, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
 --- !u!1 &866367017
 GameObject:
   m_ObjectHideFlags: 0

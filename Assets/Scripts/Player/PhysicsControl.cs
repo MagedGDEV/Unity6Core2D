@@ -22,6 +22,10 @@ public class PhysicsControl : MonoBehaviour
     public bool wallDetected;
     private RaycastHit2D hitInfoWallUpper;
     private RaycastHit2D hitInfoWallLower;
+    
+    [Header("Colliders")]
+    [SerializeField] private Collider2D standCollider;
+    [SerializeField] private Collider2D crouchCollider;
 
     private float gravityValue;
 
@@ -76,5 +80,17 @@ public class PhysicsControl : MonoBehaviour
     public void ResetVelocity()
     {
         rb.linearVelocity = Vector2.zero;
+    }
+
+    public void StandColliders()
+    {
+        standCollider.enabled = true;
+        crouchCollider.enabled = false;
+    }
+
+    public void CrouchColliders()
+    {
+        standCollider.enabled = false;
+        crouchCollider.enabled = true;
     }
 }
