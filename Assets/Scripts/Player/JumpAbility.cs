@@ -32,6 +32,19 @@ public class JumpAbility : BaseAbility
         if(!isPermitted)
             return;
 
+        if (linkedStateMachine.currentState == PlayerStates.State.Ladders)
+        {
+            linkedStateMachine.ChangeState(PlayerStates.State.Jump);
+            linkedPhysicsControl.rb.linearVelocity = 
+                new Vector2
+                (
+                    airSpeed * linkedInput.horizontalInput,
+                    jumpForce
+                );
+            minimumAirTime = startMinimumAirTime;
+            return;
+        }
+
         if (linkedPhysicsControl.grounded)
         {
             linkedStateMachine.ChangeState(PlayerStates.State.Jump);
@@ -64,6 +77,9 @@ public class JumpAbility : BaseAbility
         minimumAirTime -=Time.deltaTime;
         if (linkedPhysicsControl.grounded && minimumAirTime < 0)
             linkedStateMachine.ChangeState(PlayerStates.State.Idle);
+        if (!linkedPhysicsControl.grounded && linkedPhysicsControl.wallDetected)
+            if (linkedPhysicsControl.rb.linearVelocity.y < 0)
+                linkedStateMachine.ChangeState(PlayerStates.State.WallSlide);
     }
 
     public override void ProcessFixedAbility()
@@ -79,7 +95,10 @@ public class JumpAbility : BaseAbility
 
     public override void UpdateAnimator()
     {
-        linkedAnimator.SetBool(jumpParamterInt, linkedStateMachine.currentState == PlayerStates.State.Jump);
+        linkedAnimator.SetBool(jumpParamterInt,
+            linkedStateMachine.currentState == PlayerStates.State.Jump ||
+            linkedStateMachine.currentState == PlayerStates.State.WallJump
+            );
         linkedAnimator.SetFloat(ySpeedParameterInt, linkedPhysicsControl.rb.linearVelocityY);
     }
 }
