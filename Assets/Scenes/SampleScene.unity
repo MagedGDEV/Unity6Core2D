@@ -452,12 +452,12 @@ GameObject:
   - component: {fileID: 845851229}
   - component: {fileID: 845851227}
   - component: {fileID: 845851232}
+  - component: {fileID: 845851240}
   - component: {fileID: 845851239}
   - component: {fileID: 845851237}
   - component: {fileID: 845851236}
   - component: {fileID: 845851235}
   - component: {fileID: 845851234}
-  - component: {fileID: 845851233}
   - component: {fileID: 845851231}
   - component: {fileID: 845851228}
   - component: {fileID: 845851223}
@@ -523,7 +523,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.7
+  m_GravityScale: 8
   m_Material: {fileID: 6200000, guid: 6639508a42a924f378d1c32cef11f203, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -745,6 +745,8 @@ MonoBehaviour:
   whatToDetect:
     serializedVersion: 2
     m_Bits: 64
+  coyoteSetTime: 0.1
+  coyoteTimer: 0
   groundRayDistance: 0.08
   leftGroundPoint: {fileID: 1826660008}
   rightGroundPoint: {fileID: 729288566}
@@ -759,24 +761,6 @@ MonoBehaviour:
   ceilingDetected: 0
   standCollider: {fileID: 845851222}
   crouchCollider: {fileID: 845851238}
---- !u!114 &845851233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845851221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06deaa512b4e4bf19e6c25d9e904306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::JumpAbility
-  thisAbilityState: 2
-  isPermitted: 1
-  jumpActionRef: {fileID: 667999944324414207, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
-  jumpForce: 10
-  airSpeed: 5
-  minimumAirTime: 0.2
 --- !u!114 &845851234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,6 +881,26 @@ MonoBehaviour:
   isPermitted: 1
   crouchActionReference: {fileID: -7914943209702995390, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
   crouchSpeed: 2
+--- !u!114 &845851240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845851221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30cf74ed136a04de2a183802c1226702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VariableJumpAbiility
+  thisAbilityState: 2
+  isPermitted: 1
+  jumpActionRef: {fileID: 667999944324414207, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
+  jumpForce: 12
+  airSpeed: 5
+  minimumAirTime: 0.2
+  setMaxJumpTime: 0.2
+  gravityDivider: 1.5
 --- !u!1 &866367017
 GameObject:
   m_ObjectHideFlags: 0

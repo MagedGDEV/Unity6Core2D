@@ -56,6 +56,11 @@ public class PhysicsControl : MonoBehaviour
             coyoteTimer -= Time.deltaTime;
     }
 
+    public float GetGravity()
+    {
+        return gravityValue;
+    }
+    
     private void FixedUpdate()
     {
         wallDetected = CheckWall();
