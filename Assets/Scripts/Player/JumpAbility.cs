@@ -76,7 +76,12 @@ public class JumpAbility : BaseAbility
         player.Flip();
         minimumAirTime -=Time.deltaTime;
         if (linkedPhysicsControl.grounded && minimumAirTime < 0)
-            linkedStateMachine.ChangeState(PlayerStates.State.Idle);
+        {
+            if (linkedInput.horizontalInput != 0)
+                linkedStateMachine.ChangeState(PlayerStates.State.Run);
+            else
+                linkedStateMachine.ChangeState(PlayerStates.State.Idle);
+        }
         if (!linkedPhysicsControl.grounded && linkedPhysicsControl.wallDetected)
             if (linkedPhysicsControl.rb.linearVelocity.y < 0)
                 linkedStateMachine.ChangeState(PlayerStates.State.WallSlide);
