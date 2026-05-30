@@ -1,13 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JumpAbility : BaseAbility
+public class VariableJumpAbiility : BaseAbility
 {
     [SerializeField] private InputActionReference jumpActionRef;
     [SerializeField] private float jumpForce;
     [SerializeField] private float airSpeed;
     [SerializeField] private float minimumAirTime;
     private float startMinimumAirTime;
+
+    [SerializeField] private float setMaxJumpTime;
+    [SerializeField] private float gravityDivider;
+    private float jumpTimer;
+    private bool jumping;
+    
 
     private string jumpAnimParamterName = "Jump";
     private string ySpeedAnimParameterName = "ySpeed";
@@ -40,11 +46,9 @@ public class JumpAbility : BaseAbility
                     airSpeed * linkedInput.horizontalInput,
                     0
                 );
-            minimumAirTime = startMinimumAirTime;
-            return;
         }
 
-        if (linkedPhysicsControl.coyoteTimer > 0)
+        else if (linkedPhysicsControl.coyoteTimer > 0)
         {
             linkedStateMachine.ChangeState(PlayerStates.State.Jump);
             linkedPhysicsControl.rb.linearVelocity = 
@@ -53,14 +57,17 @@ public class JumpAbility : BaseAbility
                     airSpeed * linkedInput.horizontalInput,
                     jumpForce
                 );
-            minimumAirTime = startMinimumAirTime;
             linkedPhysicsControl.coyoteTimer = -1;
         }
+        
+        minimumAirTime = startMinimumAirTime;
+        jumpTimer = setMaxJumpTime;
+        jumping = true;
     }
 
     private void StopJump(InputAction.CallbackContext value)
     {
-        Debug.Log("STOP JUMP");
+        jumping = false;
     }
 
     protected override void Initialization()
@@ -75,6 +82,14 @@ public class JumpAbility : BaseAbility
     {
         player.Flip();
         minimumAirTime -=Time.deltaTime;
+
+        if (jumping)
+        {
+            jumpTimer -= Time.deltaTime;
+            if (jumpTimer <= 0)
+                jumping = false;
+        }
+        
         if (linkedPhysicsControl.grounded && minimumAirTime < 0)
         {
             if (linkedInput.horizontalInput != 0)
@@ -82,7 +97,7 @@ public class JumpAbility : BaseAbility
             else
                 linkedStateMachine.ChangeState(PlayerStates.State.Idle);
         }
-        if (!linkedPhysicsControl.grounded && linkedPhysicsControl.wallDetected)
+        else if (!linkedPhysicsControl.grounded && linkedPhysicsControl.wallDetected)
             if (linkedPhysicsControl.rb.linearVelocity.y < 0)
                 linkedStateMachine.ChangeState(PlayerStates.State.WallSlide);
     }
@@ -90,12 +105,28 @@ public class JumpAbility : BaseAbility
     public override void ProcessFixedAbility()
     {
         if (!linkedPhysicsControl.grounded)
-            linkedPhysicsControl.rb.linearVelocity =
-                new Vector2
-                (
-                    airSpeed * linkedInput.horizontalInput,
-                    linkedPhysicsControl.rb.linearVelocityY
-                );
+        {
+            if (jumping)
+                linkedPhysicsControl.rb.linearVelocity =
+                    new Vector2(
+                        airSpeed * linkedInput.horizontalInput,
+                        jumpForce);
+            else
+                linkedPhysicsControl.rb.linearVelocity =
+                    new Vector2(
+                        airSpeed * linkedInput.horizontalInput,
+                        linkedPhysicsControl.rb.linearVelocityY);
+        }
+
+        if (linkedPhysicsControl.rb.linearVelocity.y < 0)
+        {
+            linkedPhysicsControl.rb.gravityScale = linkedPhysicsControl.GetGravity() / gravityDivider;
+        }
+    }
+
+    public override void ExitAbility()
+    {
+        linkedPhysicsControl.EnableGravity();
     }
 
     public override void UpdateAnimator()

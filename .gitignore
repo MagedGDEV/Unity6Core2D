@@ -104,3 +104,6 @@ InitTestScene*.unity*
 
 # Ignore generated Rider files
 .idea
+
+# Ignore unity recovery files
+_Recovery*
