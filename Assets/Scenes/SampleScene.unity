@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 845851229}
   - component: {fileID: 845851227}
   - component: {fileID: 845851232}
-  - component: {fileID: 845851240}
+  - component: {fileID: 845851241}
   - component: {fileID: 845851239}
   - component: {fileID: 845851237}
   - component: {fileID: 845851236}
@@ -776,7 +776,7 @@ MonoBehaviour:
   thisAbilityState: 4
   isPermitted: 1
   wallJumpActionRef: {fileID: 667999944324414207, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
-  wallJumpForce: {x: 8, y: 10}
+  wallJumpForce: {x: 8, y: 20}
   wallJumpMaxTime: 0.4
 --- !u!114 &845851235
 MonoBehaviour:
@@ -881,7 +881,7 @@ MonoBehaviour:
   isPermitted: 1
   crouchActionReference: {fileID: -7914943209702995390, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
   crouchSpeed: 2
---- !u!114 &845851240
+--- !u!114 &845851241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -890,17 +890,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 845851221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30cf74ed136a04de2a183802c1226702, type: 3}
+  m_Script: {fileID: 11500000, guid: c62591f860ec44f39921874fcb2d0da3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VariableJumpAbiility
+  m_EditorClassIdentifier: Assembly-CSharp::MultipleJumpAbility
   thisAbilityState: 2
   isPermitted: 1
   jumpActionRef: {fileID: 667999944324414207, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
+  maxNumberOfJumps: 2
+  setMaxJumpTime: 0.2
+  gravityDivider: 1.5
   jumpForce: 12
   airSpeed: 5
   minimumAirTime: 0.2
-  setMaxJumpTime: 0.2
-  gravityDivider: 1.5
 --- !u!1 &866367017
 GameObject:
   m_ObjectHideFlags: 0
