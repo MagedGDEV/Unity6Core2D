@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
-public class WallSlideAbility : BaseAbility
+public class WallSlideAbility: BaseAbility
 {
     [SerializeField] private float maxWallSlideSpeed;
     

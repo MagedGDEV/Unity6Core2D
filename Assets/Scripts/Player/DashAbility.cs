@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DashAbility : BaseAbility
+public class DashAbility: BaseAbility
 {
     public InputActionReference dashActionRef;
     [SerializeField] private float dashForce;

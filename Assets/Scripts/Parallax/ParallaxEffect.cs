@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ParallaxEffect : MonoBehaviour
+public class ParallaxEffect: MonoBehaviour
 {
     [SerializeField] private Vector2 parallaxValue;
     private float spriteLength;
