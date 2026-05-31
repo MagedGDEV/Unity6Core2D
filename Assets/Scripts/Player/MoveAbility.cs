@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MoveAbility : BaseAbility
+public class MoveAbility: BaseAbility
 {
     [SerializeField] private float speed;
 
@@ -12,6 +12,11 @@ public class MoveAbility : BaseAbility
     {
         base.Initialization();
         runParamterInt = Animator.StringToHash(runAnimParameterName);
+    }
+
+    public override void EnterAbility()
+    {
+        player.Flip();
     }
 
     public override void ProcessAbility()

@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WallJumpAbility : BaseAbility
+public class WallJumpAbility: BaseAbility
 {
     public InputActionReference wallJumpActionRef;
     [SerializeField] private Vector2 wallJumpForce;
@@ -48,6 +47,14 @@ public class WallJumpAbility : BaseAbility
     {
         wallJumpTimer -= Time.deltaTime;
         wallJumpMinimumTime -= Time.deltaTime;
+
+        if (wallJumpMinimumTime < 0 && linkedPhysicsControl.grounded)
+        {
+            if (linkedInput.horizontalInput != 0)
+                linkedStateMachine.ChangeState(PlayerStates.State.Run);
+            else
+                linkedStateMachine.ChangeState(PlayerStates.State.Idle);
+        }
 
         if (wallJumpTimer <= 0)
         {

@@ -1,4 +1,3 @@
-
 public class PlayerStates
 {
     public enum State

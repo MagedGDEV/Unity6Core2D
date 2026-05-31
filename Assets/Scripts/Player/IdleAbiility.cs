@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IdleAbiility : BaseAbility
+public class IdleAbiility: BaseAbility
 {
     private string idleAnimParameterName= "Idle";
     private int idleParamterInt;
