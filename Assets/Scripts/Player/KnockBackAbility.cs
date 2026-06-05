@@ -4,6 +4,15 @@ using UnityEngine;
 public class KnockBackAbility : BaseAbility
 {
 
+    private string knockBackAnimParameterName= "KnockBack";
+    private int knockBackParamterInt;
+
+    protected override void Initialization()
+    {
+        base.Initialization();
+        knockBackParamterInt = Animator.StringToHash(knockBackAnimParameterName);
+    }
+
     public IEnumerator KnockBack(float duration, Vector2 force, Transform enemyObject)
     {
         linkedStateMachine.ChangeState(PlayerStates.State.KnockBack);
@@ -26,5 +35,10 @@ public class KnockBackAbility : BaseAbility
         {
             linkedStateMachine.ChangeState(PlayerStates.State.Death);
         }
+    }
+
+    public override void UpdateAnimator()
+    {
+        linkedAnimator.SetBool(knockBackParamterInt, linkedStateMachine.currentState == PlayerStates.State.KnockBack);
     }
 }
