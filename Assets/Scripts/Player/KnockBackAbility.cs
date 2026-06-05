@@ -4,6 +4,8 @@ using UnityEngine;
 public class KnockBackAbility : BaseAbility
 {
 
+    private Coroutine currentKnockBack;
+    
     private string knockBackAnimParameterName= "KnockBack";
     private int knockBackParamterInt;
 
@@ -13,7 +15,26 @@ public class KnockBackAbility : BaseAbility
         knockBackParamterInt = Animator.StringToHash(knockBackAnimParameterName);
     }
 
-    public IEnumerator KnockBack(float duration, Vector2 force, Transform enemyObject)
+    public override void EnterAbility()
+    {
+        currentKnockBack = null;
+    }
+
+    public void StartKnockBack(float duration, Vector2 force, Transform enemyObject)
+    {
+        if (currentKnockBack == null)
+        {
+            currentKnockBack = StartCoroutine(KnockBack(duration, force, enemyObject));
+        }
+        else
+        {
+            // Do nothing or stop current one and start new one
+            StopCoroutine(currentKnockBack);
+            currentKnockBack = StartCoroutine(KnockBack(duration, force, enemyObject));
+        }
+    }
+
+    private IEnumerator KnockBack(float duration, Vector2 force, Transform enemyObject)
     {
         linkedStateMachine.ChangeState(PlayerStates.State.KnockBack);
         linkedPhysicsControl.ResetVelocity();
