@@ -41,7 +41,7 @@ public class MultipleJumpAbility: BaseAbility
 
     private void TryToJump(InputAction.CallbackContext value)
     {
-        if(!isPermitted)
+        if(!isPermitted || linkedStateMachine.currentState == PlayerStates.State.KnockBack)
             return;
 
         if (linkedStateMachine.currentState == PlayerStates.State.Ladders)
