@@ -34,7 +34,7 @@ public class LadderAbility: BaseAbility
 
     private void TryToClimb(InputAction.CallbackContext value)
     {
-        if (!isPermitted)
+        if (!isPermitted || linkedStateMachine.currentState == PlayerStates.State.KnockBack)
             return;
 
         linkedAnimator.enabled = true;

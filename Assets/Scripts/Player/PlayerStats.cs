@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    
+    [SerializeField] private Player player;
     [SerializeField] private float maxHealth;
     private float currentHealth;
     
@@ -16,7 +16,13 @@ public class PlayerStats : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Debug.Log("Player is dead");
+            if (player.stateMachine.currentState != PlayerStates.State.KnockBack)
+                Debug.Log("Player is dead");
         }
+    }
+    
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }
