@@ -1105,6 +1105,10 @@ MonoBehaviour:
   player: {fileID: 845851229}
   healthBarControl: {fileID: 1067952481}
   maxHealth: 10
+  flashDuration: 0.3
+  flashStrength: 0.8
+  flashCol: {r: 1, g: 1, b: 1, a: 0}
+  flashMaterial: {fileID: 2100000, guid: 171c0c72700e349efa8331356b454628, type: 2}
 --- !u!70 &827890768
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
