@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private HealthBarControl healthBarControl;
     [SerializeField] private float maxHealth;
     private float currentHealth;
+    private bool canTakeDamage = true;
     
     [Header("Flash")]
     [SerializeField] private float flashDuration;
@@ -16,7 +17,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Material flashMaterial;
     private Material defaultMaterial;
     private SpriteRenderer spriter;
-    private bool canTakeDamage;
     private string flashColorGraphParameter = "_FlashColor"; 
     private string flashAmountGraphParameter = "_FlashAmount";
     private int flashColorGraphParameterInt;
@@ -38,6 +38,9 @@ public class PlayerStats : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
+        if (!canTakeDamage)
+            return;
+        
         currentHealth -= damage;
         healthBarControl.SetSliderValue(currentHealth, maxHealth);
         StartCoroutine(Flash());
@@ -50,14 +53,22 @@ public class PlayerStats : MonoBehaviour
 
     private IEnumerator Flash()
     {
+        canTakeDamage = false;
         spriter.material = flashMaterial;
         flashMaterial.SetColor(flashColorGraphParameterInt, flashCol);
         flashMaterial.SetFloat(flashAmountGraphParameterInt,  flashStrength);
         
         yield return new WaitForSeconds(flashDuration);
         spriter.material = defaultMaterial;
+        
+        if (currentHealth > 0)
+            canTakeDamage = true;
     }
-    
+
+    public bool GetCanTakeDamage()
+    {
+        return canTakeDamage;
+    }
     public float GetCurrentHealth()
     {
         return currentHealth;

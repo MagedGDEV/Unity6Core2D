@@ -22,6 +22,9 @@ public class KnockBackAbility : BaseAbility
 
     public void StartKnockBack(float duration, Vector2 force, Transform enemyObject)
     {
+        if (!player.playerStats.GetCanTakeDamage())
+            return;
+        
         if (currentKnockBack == null)
         {
             currentKnockBack = StartCoroutine(KnockBack(duration, force, enemyObject));
