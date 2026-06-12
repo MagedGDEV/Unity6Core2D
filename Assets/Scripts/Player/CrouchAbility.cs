@@ -15,11 +15,13 @@ public class CrouchAbility: BaseAbility
     public override void EnterAbility()
     {
         linkedPhysicsControl.CrouchColliders();
+        player.playerStats.EnableStatsCrouchCol();
     }
 
     public override void ExitAbility()
     {
         linkedPhysicsControl.StandColliders();
+        player.playerStats.EnableStatsStandCol();
         wantToStop = false;
     }
 

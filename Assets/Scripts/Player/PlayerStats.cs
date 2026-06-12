@@ -22,6 +22,11 @@ public class PlayerStats : MonoBehaviour
     private int flashColorGraphParameterInt;
     private int flashAmountGraphParameterInt;
 
+    [Header("Stats Colliders")] 
+    [SerializeField] private Collider2D crouchStatsCol;
+    [SerializeField] private Collider2D standingStatsCol;
+    private Collider2D currentStatsCol;
+    
     private void Awake()
     {
         flashColorGraphParameterInt = Shader.PropertyToID(flashColorGraphParameter);
@@ -65,6 +70,26 @@ public class PlayerStats : MonoBehaviour
             canTakeDamage = true;
     }
 
+    public void EnableStatsStandCol()
+    {
+        if (currentHealth <= 0)
+            return;
+
+        crouchStatsCol.enabled = false;
+        standingStatsCol.enabled = true;
+        currentStatsCol = standingStatsCol;
+    }
+
+    public void EnableStatsCrouchCol()
+    {
+        if (currentHealth <= 0)
+            return;
+
+        crouchStatsCol.enabled = true;
+        standingStatsCol.enabled = false;
+        currentStatsCol = crouchStatsCol;
+    }
+    
     public bool GetCanTakeDamage()
     {
         return canTakeDamage;
