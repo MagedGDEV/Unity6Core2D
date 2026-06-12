@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: be6b08b22d69b46d3afbba26862f835d
+guid: a2aab6ea86e0e4862983150b63a07e2c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7979891434948116383
-    second: Swinging_Blade_42x42_0
+      213: -4118783975704069752
+    second: Swing_Blade_42x44_0
   - first:
-      213: -1059978401528185141
-    second: Swinging_Blade_42x42_1
+      213: -5095362179159240402
+    second: Swing_Blade_42x44_1
+  - first:
+      213: -6854256519995765816
+    second: Swing_Blade_42x44_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,35 +106,35 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Swinging_Blade_42x42_0
+      name: Swing_Blade_42x44_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 42
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 44
+      alignment: 9
+      pivot: {x: 0.5, y: 0.9318182}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19c2c4f39b02b4526b57d3853dd4e889
-      internalID: -1704007447
+      spriteID: 99c69e06ba3bd49fc8f2a7771c4be6e9
+      internalID: 1411259923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Swinging_Blade_42x42_1
+      name: Swing_Blade_42x44_1
       rect:
         serializedVersion: 2
         x: 42
         y: 0
         width: 42
-        height: 42
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13169271eaa8a4d888fd116ce331ffd0
-      internalID: 789815693
+      spriteID: df2a1c34f9ecd4ee39adccf82aeb81d7
+      internalID: 447232731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Swinging_Blade_42x42_2
+      name: Swing_Blade_42x44_2
       rect:
         serializedVersion: 2
         x: 84
         y: 0
         width: 42
-        height: 42
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,8 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e070c5aa24d5b4344a3ccf50b9296af7
-      internalID: 1886763867
+      spriteID: 055fad4d69c71423f91ca42b67499e41
+      internalID: 1197314795
       vertices: []
       indices: 
       edges: []
@@ -182,11 +185,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":42.0,"y":42.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":42.0,"y":44.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Swinging_Blade_42x42_0: -1704007447
-      Swinging_Blade_42x42_1: 789815693
-      Swinging_Blade_42x42_2: 1886763867
+      Swing_Blade_42x44_0: 1411259923
+      Swing_Blade_42x44_1: 447232731
+      Swing_Blade_42x44_2: 1197314795
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
