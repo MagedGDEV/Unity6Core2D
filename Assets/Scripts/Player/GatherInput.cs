@@ -40,4 +40,9 @@ public class GatherInput: MonoBehaviour
         Debug.Log("Horizontal Input = " + horizontalInput);
         Debug.Log("Vertical Input = " + verticalInput);
     }
+
+    public void DisablePlayerInput()
+    {
+        playerMap.Disable();
+    }
 }

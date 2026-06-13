@@ -22,6 +22,9 @@ public class KnockBackAbility : BaseAbility
 
     public void StartKnockBack(float duration, Vector2 force, Transform enemyObject)
     {
+        if (!player.playerStats.GetCanTakeDamage())
+            return;
+        
         if (currentKnockBack == null)
         {
             currentKnockBack = StartCoroutine(KnockBack(duration, force, enemyObject));
@@ -31,6 +34,23 @@ public class KnockBackAbility : BaseAbility
             // Do nothing or stop current one and start new one
             StopCoroutine(currentKnockBack);
             currentKnockBack = StartCoroutine(KnockBack(duration, force, enemyObject));
+        }
+    }
+    
+    public void StartKnockBack(float duration, Vector2 force, int direction)
+    {
+        if (!player.playerStats.GetCanTakeDamage())
+            return;
+        
+        if (currentKnockBack == null)
+        {
+            currentKnockBack = StartCoroutine(KnockBack(duration, force, direction));
+        }
+        else
+        {
+            // Do nothing or stop current one and start new one
+            StopCoroutine(currentKnockBack);
+            currentKnockBack = StartCoroutine(KnockBack(duration, force, direction));
         }
     }
 
@@ -57,6 +77,33 @@ public class KnockBackAbility : BaseAbility
             linkedStateMachine.ChangeState(PlayerStates.State.Death);
         }
     }
+    
+    private IEnumerator KnockBack(float duration, Vector2 force, int direction)
+    {
+        linkedStateMachine.ChangeState(PlayerStates.State.KnockBack);
+        linkedPhysicsControl.ResetVelocity();
+
+        force.x *= direction;
+        linkedPhysicsControl.rb.linearVelocity = force;
+        
+        yield return new WaitForSeconds(duration);
+        
+        // return to other states
+        if (player.playerStats.GetCurrentHealth() > 0)
+        {
+            if (linkedPhysicsControl.grounded)
+                linkedStateMachine.ChangeState(linkedInput.horizontalInput != 0
+                    ? PlayerStates.State.Run
+                    : PlayerStates.State.Idle);
+            else
+                linkedStateMachine.ChangeState(PlayerStates.State.Jump);
+        }
+        else
+        {
+            linkedStateMachine.ChangeState(PlayerStates.State.Death);
+        }
+    }
+
 
     public override void UpdateAnimator()
     {
