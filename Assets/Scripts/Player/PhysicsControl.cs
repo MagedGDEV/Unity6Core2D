@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PhysicsControl: MonoBehaviour
+public class PhysicsControl : MonoBehaviour
 {
 
     public Rigidbody2D rb;

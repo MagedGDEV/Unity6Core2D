@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseAbility: MonoBehaviour
+public class BaseAbility : MonoBehaviour
 {
     protected Player player;
 

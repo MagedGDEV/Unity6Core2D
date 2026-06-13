@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WallJumpAbility: BaseAbility
+public class WallJumpAbility : BaseAbility
 {
     public InputActionReference wallJumpActionRef;
     [SerializeField] private Vector2 wallJumpForce;

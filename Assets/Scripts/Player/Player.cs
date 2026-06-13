@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player: MonoBehaviour
+public class Player : MonoBehaviour
 {
     public GatherInput gatherInput;
     public StateMachine stateMachine;

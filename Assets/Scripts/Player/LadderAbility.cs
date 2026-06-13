@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LadderAbility: BaseAbility
+public class LadderAbility : BaseAbility
 {
     [SerializeField] private InputActionReference ladderActionRef;
     [SerializeField] private float climbSpeed;

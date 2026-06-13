@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GatherInput: MonoBehaviour
+public class GatherInput : MonoBehaviour
 {
     public PlayerInput playerInput;
 

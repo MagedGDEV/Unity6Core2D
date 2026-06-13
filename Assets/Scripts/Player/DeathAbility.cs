@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class DeathAbility : BaseAbility
 {
-    private string DeathAnimParameterName= "Death";
-    private int DeathParameterInt;
+    private string deathAnimParameterName= "Death";
+    private int deathParameterInt;
 
 
     public override void EnterAbility()
@@ -15,17 +15,17 @@ public class DeathAbility : BaseAbility
     protected override void Initialization()
     {
         base.Initialization();
-        DeathParameterInt = Animator.StringToHash(DeathAnimParameterName);
+        deathParameterInt = Animator.StringToHash(deathAnimParameterName);
     }
 
     public override void UpdateAnimator()
     {
         if(linkedPhysicsControl.grounded)
-            linkedAnimator.SetBool(DeathParameterInt, linkedStateMachine.currentState == PlayerStates.State.Death);
+            linkedAnimator.SetBool(deathParameterInt, linkedStateMachine.currentState == PlayerStates.State.Death);
         else
         {
             // TOD0:: Add air death animation
-            linkedAnimator.SetBool(DeathParameterInt, linkedStateMachine.currentState == PlayerStates.State.Death);
+            linkedAnimator.SetBool(deathParameterInt, linkedStateMachine.currentState == PlayerStates.State.Death);
         }
     }
 

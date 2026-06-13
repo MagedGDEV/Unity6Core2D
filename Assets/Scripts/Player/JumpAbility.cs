@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JumpAbility: BaseAbility
+public class JumpAbility : BaseAbility
 {
     [SerializeField] private InputActionReference jumpActionRef;
     [SerializeField] private float jumpForce;

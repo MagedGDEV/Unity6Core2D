@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MoveAbility: BaseAbility
+public class MoveAbility : BaseAbility
 {
     [SerializeField] private float speed;
 
