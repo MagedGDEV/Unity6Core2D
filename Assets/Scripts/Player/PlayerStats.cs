@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             if (player.stateMachine.currentState != PlayerStates.State.KnockBack)
-                Debug.Log("Player is dead");
+                player.stateMachine.ChangeState(PlayerStates.State.Death);
         }
     }
 
