@@ -89,6 +89,16 @@ public class PlayerStats : MonoBehaviour
         standingStatsCol.enabled = false;
         currentStatsCol = crouchStatsCol;
     }
+
+    public void EnableDamage()
+    {
+        canTakeDamage = true;
+    }
+
+    public void DisableDamage()
+    {
+        canTakeDamage = false;
+    }
     
     public bool GetCanTakeDamage()
     {
