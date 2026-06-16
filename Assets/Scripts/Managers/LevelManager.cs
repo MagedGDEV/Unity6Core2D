@@ -24,6 +24,11 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(FadeToBlack(SceneManager.GetActiveScene().buildIndex));
     }
 
+    public void LoadLevel(string sceneName)
+    {
+        StartCoroutine(FadeToBlack(sceneName));
+    }
+
     private IEnumerator FadeToTransparent()
     {
         float time = 0;
@@ -37,6 +42,22 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
         canvasGroup.alpha = endAlpha;
+    }
+
+    private IEnumerator FadeToBlack(string sceneName)
+    {
+        float time = 0;
+        float startAlpha = canvasGroup.alpha;
+        float endAlpha = 1;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, time / fadeDuration);
+            yield return null;
+        }
+        canvasGroup.alpha = endAlpha;
+        SceneManager.LoadScene(sceneName);
     }
 
     private IEnumerator FadeToBlack(int buildIndex)
