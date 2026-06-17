@@ -24,13 +24,13 @@ public class DeathAbility : BaseAbility
             linkedAnimator.SetBool(deathParameterInt, linkedStateMachine.currentState == PlayerStates.State.Death);
         else
         {
-            // TOD0:: Add air death animation
+            // TODO - Add air death animation
             linkedAnimator.SetBool(deathParameterInt, linkedStateMachine.currentState == PlayerStates.State.Death);
         }
     }
 
     public void ResetGame()
     {
-        Debug.Log("Reset Game");
+        LevelManager.instance.RestartLevel();
     }
 }
