@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public class SpawnControl : MonoBehaviour
@@ -5,26 +6,53 @@ public class SpawnControl : MonoBehaviour
 
     private Transform player;
     [SerializeField] private SpawnIdentifier[] spawnPoints;
+    [SerializeField] private SpawnIdentifier[] checkPoints;
     private SpawnData spawnData = new SpawnData();
+    private CheckpointData checkData = new CheckpointData();
+    
     
     void Start()
     {
         // SaveLoadManager.instance.DeleteFolder(SaveLoadManager.instance.folderName);
         player = FindAnyObjectByType<Player>().transform;
-        SaveLoadManager.instance.Load(spawnData, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileName);
 
-        foreach (SpawnIdentifier spawnID in spawnPoints)
+
+        string loadPath = Path.Combine(Application.persistentDataPath, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileCheckPoint);
+        if (SpawnMode.spawnFromCheckPoint && File.Exists(loadPath))
         {
-            if (spawnID.spawnKey == spawnData.spawnPointKey)
+            SaveLoadManager.instance.Load(checkData, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileCheckPoint);
+            foreach (SpawnIdentifier spawnID in checkPoints)
             {
-                player.transform.position = spawnID.transform.position;
-                break;
+                if (spawnID.spawnKey == checkData.checkpointKey)
+                {
+                    player.transform.position = spawnID.transform.position;
+                    break;
+                }
             }
-        }
 
-        if (spawnData.facingRight == false)
+            if (checkData.facingRight == false)
+            {
+                player.GetComponent<Player>().ForceFlip();
+            }
+            SpawnMode.spawnFromCheckPoint = false;
+        }
+        else
         {
-            player.GetComponent<Player>().ForceFlip();
+            SaveLoadManager.instance.Load(spawnData, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileName);
+
+            foreach (SpawnIdentifier spawnID in spawnPoints)
+            {
+                if (spawnID.spawnKey == spawnData.spawnPointKey)
+                {
+                    player.transform.position = spawnID.transform.position;
+                    break;
+                }
+            }
+
+            if (spawnData.facingRight == false)
+            {
+                player.GetComponent<Player>().ForceFlip();
+            }
         }
     }
 }

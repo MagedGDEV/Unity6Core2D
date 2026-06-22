@@ -1,12 +1,14 @@
 [System.Serializable]
 public class SpawnData
 {
-    public string spawnPointKey;
-    public bool facingRight;
+    public string spawnPointKey = "Start";
+    public bool facingRight = true;
+}
 
-    public SpawnData()
-    {
-        spawnPointKey = "Start";
-        facingRight = true;
-    }
+[System.Serializable]
+public class CheckpointData
+{
+    public string sceneToLoad = "Level 1";
+    public string checkpointKey = "Check1";
+    public bool facingRight = true;
 }

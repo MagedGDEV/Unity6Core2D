@@ -4,10 +4,13 @@ using UnityEngine;
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager instance;
-
-    [Header("Spawn")] 
     public string folderName = "SaveFiles";
+    
+    [Header("Spawn")] 
     public string fileName = "SpawnPoint.json";
+    
+    [Header("Checkpoint")]
+    public string fileCheckPoint = "CheckPoint.json";
 
     private void Awake()
     {
