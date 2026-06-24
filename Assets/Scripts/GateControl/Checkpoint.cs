@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -9,13 +10,40 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] private Collider2D boxCol;
     [SerializeField] private CheckpointData checkpointData;
 
+    private void Start()
+    {
+        string loadPath = Path.Combine(Application.persistentDataPath, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileCheckPoint);
+        if (File.Exists(loadPath))
+        {
+            CheckpointData helpCheck = new CheckpointData();
+            SaveLoadManager.instance.Load(helpCheck, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileCheckPoint);
+            if (helpCheck.checkpointKey == checkpointData.checkpointKey)
+            {
+                spriter.sprite = spriteEnabled;
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            spriter.sprite = spriteEnabled;
-            // Save data
-            SaveLoadManager.instance.Save(checkpointData, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileCheckPoint);
+            collision.GetComponent<ActivateCheckpoint>().checkPoint = this;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<ActivateCheckpoint>().checkPoint = null;
+        }
+    }
+
+    public void ActivateCheckPoint()
+    {
+        spriter.sprite = spriteEnabled;
+        // Save data
+        SaveLoadManager.instance.Save(checkpointData, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileCheckPoint);
     }
 }

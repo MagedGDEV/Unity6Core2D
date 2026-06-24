@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnControl : MonoBehaviour
 {
@@ -9,16 +10,23 @@ public class SpawnControl : MonoBehaviour
     [SerializeField] private SpawnIdentifier[] checkPoints;
     private SpawnData spawnData = new SpawnData();
     private CheckpointData checkData = new CheckpointData();
+    private bool canLoadFromCheckPoint = false;
     
     
     void Start()
     {
         // SaveLoadManager.instance.DeleteFolder(SaveLoadManager.instance.folderName);
         player = FindAnyObjectByType<Player>().transform;
-
-
         string loadPath = Path.Combine(Application.persistentDataPath, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileCheckPoint);
-        if (SpawnMode.spawnFromCheckPoint && File.Exists(loadPath))
+        if (File.Exists(loadPath))
+        {
+            SaveLoadManager.instance.Load(checkData, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileName);
+            if (checkData.sceneToLoad == SceneManager.GetActiveScene().name)
+            {
+                canLoadFromCheckPoint = true;
+            }
+        }
+        if (SpawnMode.spawnFromCheckPoint && canLoadFromCheckPoint)
         {
             SaveLoadManager.instance.Load(checkData, SaveLoadManager.instance.folderName, SaveLoadManager.instance.fileCheckPoint);
             foreach (SpawnIdentifier spawnID in checkPoints)
