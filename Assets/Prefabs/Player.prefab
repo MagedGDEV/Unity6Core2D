@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 6150025002407107132}
   - component: {fileID: 6403262831785552414}
   - component: {fileID: 285176788474081919}
+  - component: {fileID: 9174048924046242765}
   - component: {fileID: 639582620802863321}
   - component: {fileID: 8006843435110395640}
   - component: {fileID: 3138687392459011901}
@@ -404,6 +405,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IdleAbiility
   thisAbilityState: 0
   isPermitted: 1
+--- !u!114 &9174048924046242765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649387891501330863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2736953765b7f469096d71fa3a8e85ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivateCheckpoint
+  ActivateCheck: {fileID: -9060474630565151455, guid: c47217ecea33d4f558f77f0db613241b, type: 3}
+  checkPoint: {fileID: 0}
 --- !u!50 &639582620802863321
 Rigidbody2D:
   serializedVersion: 5
